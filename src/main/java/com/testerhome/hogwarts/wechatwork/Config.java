@@ -28,4 +28,14 @@ public class Config {
     String agentId;
     String corpId;
     String secret;
+
+    public String getContactToken() {
+        return contactToken;
+    }
+
+    public void setContactToken(String contactToken) {
+        this.contactToken = contactToken;
+    }
+
+    String contactToken;
 }

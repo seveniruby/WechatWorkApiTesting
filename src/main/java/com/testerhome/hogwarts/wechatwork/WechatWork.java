@@ -1,9 +1,9 @@
 package com.testerhome.hogwarts.wechatwork;
 
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +14,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class WechatWork {
     public static Config config=null;
     public static String token=null;
+
     public static void load(File file){
         ObjectMapper mapper=new ObjectMapper(new YAMLFactory());
         try {
@@ -36,16 +37,29 @@ public class WechatWork {
         }
     }
 
+    public static void write(String a, String b){
+
+    }
+
+
     public static void loadToken(){
         if(token==null) {
             token = given()
                     .queryParam("corpid", WechatWork.config.getCorpId())
-                    .queryParam("corpsecret", WechatWork.config.getSecret())
+                    .queryParam("corpsecret", WechatWork.config.getContactToken())
                     .when().get("https://qyapi.weixin.qq.com/cgi-bin/gettoken")
                     .then()
                     .statusCode(200).body("errcode", equalTo(0)).extract().path("access_token");
         }
         System.out.println(token);
     }
+
+    public static DocumentContext readJson(String path){
+        DocumentContext json=JsonPath.parse(WechatWork.class.getResourceAsStream(path));
+        return json;
+
+    }
+
+
 
 }
