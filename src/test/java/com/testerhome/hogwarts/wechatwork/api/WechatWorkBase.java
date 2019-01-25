@@ -13,6 +13,7 @@ public class WechatWorkBase {
         if(WechatWork.config==null) {
             WechatWork.load("/default.yaml");
             WechatWork.loadToken();
+            System.getenv("ENV");
             RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
         }
         System.out.println(WechatWork.config);

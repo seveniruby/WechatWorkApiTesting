@@ -3,8 +3,10 @@ package com.testerhome.hogwarts.wechatwork.api;
 import com.testerhome.hogwarts.wechatwork.Member;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
 
@@ -25,6 +27,10 @@ public class MemberTest extends WechatWorkBase {
         m.delete(id);
     }
 
+    @Test
+    public void demo(){
+        assertThat(1, equalTo(2));
+    }
 
     @Test
     public void addRight(){
@@ -60,6 +66,12 @@ public class MemberTest extends WechatWorkBase {
                 .then().statusCode(200)
                 .body("errcode", not(equalTo(0)))
                 .body("errcode", equalTo(60104));
+    }
+
+    @Test
+    @Ignore
+    public void update(){
+
     }
 
     @AfterClass

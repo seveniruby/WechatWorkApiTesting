@@ -45,4 +45,8 @@ public class Department {
                 .when().get("https://qyapi.weixin.qq.com/cgi-bin/department/delete")
                 .then().statusCode(200).extract().response();
     }
+
+    public Response api(String key){
+        return given().when().get().then().extract().response();
+    }
 }

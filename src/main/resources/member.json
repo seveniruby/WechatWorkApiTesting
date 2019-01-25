@@ -1,6 +1,6 @@
 {
   "userid": "zhangsan",
-  "name": "张三",
+  "name": "${name}",
   "alias": "jackzhang",
   "mobile": "15913215421",
   "department": [1],
